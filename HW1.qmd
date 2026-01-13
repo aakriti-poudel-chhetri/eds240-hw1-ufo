@@ -2,7 +2,7 @@
 title: "HW #1"
 subtitle: "Interpreting `{ggplot2}` code"
 description: "Assigned Wed 01/07/2026 | Due Wed 01/14/2026"
-author: "Your Name"
+author: "Aakriti Poudel"
 toc: true
 code-line-numbers: true
 editor_options: 
@@ -54,7 +54,7 @@ showtext::showtext_auto(enable = TRUE)
 
 1. **What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantage(s) is there to defining these values here, as variables, rather than defining the values directly throughout the script?**
 
-    - Answer here
+    - In line 15, alien is assigned a vector containing two hexadecimal color codes. In line 16, the variable bg is assigned the first color in the alien vector, where bg represents the background color. In line 17, accent is assigned the second color in the alien vector, which represents highlight color. This ensures consistency throughout the workflow and to helps avoid typos. These variables are likely used in multiple places later in the workflow, such as in plot themes or aesthetic. By defining them, any color changes can be made in a lines 15–17 rather than updating the same values repeatedly throughout the workflow.
 
 2. **In your own words, explain what the function, `font_add_google()`, does. What's the difference between the two arguments, `name` and `family`?**
 
