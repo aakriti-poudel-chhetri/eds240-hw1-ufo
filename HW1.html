@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
+<meta name="author" content="Aakriti Poudel">
 <meta name="description" content="Assigned Wed 01/07/2026 | Due Wed 01/14/2026">
 
 <title>HW #1</title>
@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
+             <p>Aakriti Poudel </p>
           </div>
   </div>
     
@@ -191,11 +191,11 @@ Some notes before you get started
 <ol type="1">
 <li><p><strong>What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantage(s) is there to defining these values here, as variables, rather than defining the values directly throughout the script?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>In line 15, <code>alien</code> is assigned a vector containing two hexadecimal color codes. In line 16, the variable <code>bg</code> is assigned the first color in the alien vector, where bg represents the background color. In line 17, <code>accent</code> is assigned the second color in the alien vector, which represents highlight color. This ensures consistency throughout the workflow and to helps avoid typos. These variables are likely used in multiple places later in the workflow, such as in plot themes or aesthetic. By defining them, any color changes can be made in a lines 15–17 rather than updating the same values repeatedly throughout the workflow.</li>
 </ul></li>
 <li><p><strong>In your own words, explain what the function, <code>font_add_google()</code>, does. What’s the difference between the two arguments, <code>name</code> and <code>family</code>?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>The function <code>font_add_google()</code> downloads font from google fonts and makes it available in R for use. This allows the use of custom fonts that are not installed locally on the computer. The <code>name</code> argument represents the official name of the font as it appears on google fonts, which tells R which font to download. The <code>family</code> argument assigns is an alias of the google font name and is used to reference the google font within R. This makes the code easier to write and read, as it avoids repeatedly using the full font name.</li>
 </ul></li>
 </ol>
 </section>
@@ -216,7 +216,7 @@ Some notes before you get started
 <ol start="3" type="1">
 <li><p><strong>Describe what this data frame contains.</strong></p>
 <ul>
-<li>Answer here</li>
+<li>This dataframe <code>df_pop</code> contains the name of the 51 states of the Unites States along with their corresponding population.</li>
 </ul></li>
 </ol>
 </section>
@@ -239,7 +239,7 @@ Some notes before you get started
 <ol start="4" type="1">
 <li><p><strong>Describe what this data frame contains.</strong></p>
 <ul>
-<li>Answer here</li>
+<li>This data frame <code>df_us</code> contains UFO sighting statistics for each sates. It includes states name (<code>state</code>), number of observation for UFO sightings (<code>num_obs</code>), population of the state (<code>pop</code>), number of UFO sightings per 10,000 people (<code>num_obs_per10k</code>) and opacity value (<code>opacity_val</code>).</li>
 </ul></li>
 <li><p><strong>What does <code>opacity_val</code> represent, and why is it calculated?</strong></p>
 <ul>

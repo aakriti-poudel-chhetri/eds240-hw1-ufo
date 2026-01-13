@@ -54,11 +54,11 @@ showtext::showtext_auto(enable = TRUE)
 
 1. **What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantage(s) is there to defining these values here, as variables, rather than defining the values directly throughout the script?**
 
-    - In line 15, alien is assigned a vector containing two hexadecimal color codes. In line 16, the variable bg is assigned the first color in the alien vector, where bg represents the background color. In line 17, accent is assigned the second color in the alien vector, which represents highlight color. This ensures consistency throughout the workflow and to helps avoid typos. These variables are likely used in multiple places later in the workflow, such as in plot themes or aesthetic. By defining them, any color changes can be made in a lines 15–17 rather than updating the same values repeatedly throughout the workflow.
+    - In line 15, `alien` is assigned a vector containing two hexadecimal color codes. In line 16, the variable `bg` is assigned the first color in the alien vector, where bg represents the background color. In line 17, `accent` is assigned the second color in the alien vector, which represents highlight color. This ensures consistency throughout the workflow and to helps avoid typos. These variables are likely used in multiple places later in the workflow, such as in plot themes or aesthetic. By defining them, any color changes can be made in a lines 15–17 rather than updating the same values repeatedly throughout the workflow.
 
 2. **In your own words, explain what the function, `font_add_google()`, does. What's the difference between the two arguments, `name` and `family`?**
 
-    - Answer here
+    - The function `font_add_google()` downloads font from google fonts and makes it available in R for use. This allows the use of custom fonts that are not installed locally on the computer. The `name` argument represents the official name of the font as it appears on google fonts, which tells R which font to download. The `family` argument assigns is an alias of the google font name and is used to reference the google font within R. This makes the code easier to write and read, as it avoids repeatedly using the full font name.
 
 ## II. Data wrangling
 
@@ -80,7 +80,7 @@ df_pop <- places |>
 
 3. **Describe what this data frame contains.**
 
-    - Answer here
+    - This dataframe `df_pop` contains the name of the 51 states of the Unites States along with their corresponding population.
 
 ### ii. Create `df_us`
 
@@ -104,11 +104,11 @@ df_us <- ufo_sightings |>
 
 4. **Describe what this data frame contains.**
 
-    - Answer here
+    - This data frame `df_us` contains UFO sighting statistics for each sates. It includes states name (`state`), number of observation for UFO sightings (`num_obs`), population of the state (`pop`), number of UFO sightings per 10,000 people (`num_obs_per10k`) and opacity value (`opacity_val`).
 
 5. **What does `opacity_val` represent, and why is it calculated?**
 
-    - Answer here
+    - The `opacity_val` represents the degree of transparency of an element, color or pixel. It helps measure how much content behind the object can be seen. `opacity_val is used to see how color appears when a transparent object is placed on top of a background.
 
 ### iii. Create `df_shape`
 
@@ -132,15 +132,15 @@ df_shape <- ufo_sightings |>
 
 6. **Describe what this data frame contains.**
 
-    - Answer here
+    - It includes the shape name, the total number of sightings for each shape (total_sightings), and an opacity value (opacity_val) that ranges from 0.3 to 1. The shapes are arranged in descending order by frequency and converted to an ordered factor for plotting purposes, ensuring they'll display in order from most to least common. The opacity value  ranges from 0.3 to 1, where the most common shape has an opacity of 1, which is fully opaque and the least common has an opacity of 0.3.
 
 7. **What does `fct_reorder` do when it is applied to the `shape` variable? What would have happened if this step was not performed?**
 
-    - Answer here
+    - The `fct_reorder` reorders the shape variable based on the values in total_sightings, arranging the shapes from least to most common. This will help to create more intuitive plots where most common shapes are at the top or bottom, making it easier for viewers to visualize. If this step was not performed, the shapes would be plotted in alphabetical order by default which would make it difficult to visualize.
 
 8. **What is the purpose of rescaling `opacity_val`? And why rescale from 0.3 to 1?**
 
-    - Answer here
+    - The purpose of rescaling the `opacity_val` is to control how transparent or solid each UFO shape appears in the visualization. By rescaling from 0.3 to 1, the least sighted UFO shape are visible at 30% opacity, while the most sighted UFO shape are fully solid at 100% opacity. This prevents any shapes from disappearing completely from the background, still creating a clear visual difference.
 
 ### iv. Create `df_day_hour`
 
