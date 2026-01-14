@@ -80,7 +80,7 @@ df_pop <- places |>
 
 3. **Describe what this data frame contains.**
 
-    - This dataframe `df_pop` contains the name of the 51 states of the Unites States along with their corresponding population.
+    - This data frame `df_pop` contains the name of the 51 states of the Unites States along with their corresponding population.
 
 ### ii. Create `df_us`
 
@@ -168,11 +168,11 @@ df_day_hour <- ufo_sightings |>
 
 9. **Describe what this data frame contains.**
 
-    - Answer here
+    - This data frame contains counts of UFO sightings grouped by day of the week and hour of the day. It includes the numeric day of the week (`day`) and the corresponding name of the weekday (`wday`), the hour when the sighting was reported (`hour`) along with a formatted hour label (`hour_lab`), the total number of sightings for each day and hour (`total_daily_obs`), and an opacity value (`opacity_val`).
 
 10. **What is the purpose of the last line inside the `case_when()` statement (`TRUE ~ paste0(hour - 12, "pm")`)?**
 
-    - Answer here
+    - The purpose of the last line (`TRUE ~ paste0(hour - 12, "pm")`) is to act as default case. The TRUE refers ‘for all other cases' or 'everything else'. It converts any remaining hour values, those greater than 12, into a 12-hour clock format by subtracting 12 and adding 'pm'. This ensures that all afternoon and evening hours are labeled correctly.
 
 ## III. Prepare text elements
 
@@ -194,7 +194,7 @@ caption <- glue("{original}{space}{dan_github}
 
 11. **In your own words, what is the difference between `paste0()` and `glue()`? Why did the author use `paste0` to construct `quotes` and `glue` to construct the other text elements?**
 
-    - Answer here
+    - `paste0()` joins text together in order by concatenating strings without any special formatting. `glue()` allows embedding R code and builds strings using inline placeholders, which makes text with many variables easier to read and write. The author used `paste0()` to concatenate the text, which is a straightforward task. The author used `glue()` to embed multiple variables and HTML styling. Using `glue()` makes the code cleaner and more readable than trying to achieve the same result with `paste0()`, which would require many quotation marks and commas to piece everything together.
 
 ## IV. Build plots
 
@@ -211,14 +211,14 @@ plot_shape <- ggplot(data = df_shape) +
             family = "orb", 
             fontface = "bold",
             color = bg, 
-            size = 14, 
+            size = 4, #14
             hjust = 0,
             nudge_y = 0.2) +
   geom_text(aes(x = total_sightings-200, y = shape, label = scales::comma(total_sightings)),
             family = "orb",
             fontface = "bold",
             color = bg,
-            size = 10,
+            size = 2, #10
             hjust = 1,
             nudge_y = -0.2) +
   scale_x_continuous(expand = c(0, NA)) +
@@ -226,17 +226,19 @@ plot_shape <- ggplot(data = df_shape) +
   theme_void() +
   theme(
     plot.subtitle = element_text(family = "bar", 
-                                 size = 40, 
+                                 size = 20, #40
                                  color = accent,
                                  hjust = 0,  
                                  margin = margin(b = 10)),
     legend.position = "none" 
   )
+
+plot_shape
 ```
 
 12. **Explain the values provided to the `x` aesthetic for both text geoms (`shape` & `total_sightings`).**
 
-    - Answer here
+    - The values provided to the `x` aesthetic for first geom_text (`x = 200`) positions all shape labels at a fixed x-coordinate of 200. The values provided to the `x` aesthetic for second geom_text (`x = total_sightings-200`) positions each count label based on the bar length, placing it slightly inside the end of each bar.
 
 ### ii. Build `plot_us` 
 
@@ -252,12 +254,12 @@ plot_us <-  ggplot(df_us) +
   geom_text(aes(x = 0.5, y = 0.7, label = state), 
             family = "orb", 
             fontface = "bold",
-            size = 9, 
+            size = 3, #9
             color = bg) +
   geom_text(aes(x = 0.5, y = 0.3, label = round(num_obs_per10k, 1)), 
             family = "orb", 
             fontface = "bold",
-            size = 8, 
+            size = 4, #8
             color = bg) +  
   geofacet::facet_geo(~state) +
   coord_fixed(ratio = 1) +
@@ -266,17 +268,19 @@ plot_us <-  ggplot(df_us) +
   theme(
     strip.text = element_blank(),
     plot.subtitle = element_text(family = "bar", 
-                                 size = 40, 
+                                 size = 15, #40
                                  color = accent,
-                                 hjust = 1,  
-                                 margin = margin(b = 10)),
+                                 hjust = 0, #1
+                                 margin = margin(b = 8)), # b = 10
     legend.position = "none" 
   )
+
+plot_us
 ```
 
 13. **Consider the order of `geom_*()` layers in the the above plot (`plot_us`). Why did the author order the layers in this way?**
 
-    - Answer here
+    - The author ordered the layers from back to front to control how elements are stacked and remain visible in the final plot. The `geom_rect()` layer serves as the background for each facet, and the two `geom_text()` layers are added afterward so the state names and numeric values appear on top of the rectangles. This ordering ensures proper layering and a clear visualization.
 
 ### iii. Build `plot_day`
 
@@ -292,12 +296,12 @@ plot_day <- ggplot(data = df_day_hour) +
   geom_text(aes(x = hour, y = 9, label = hour_lab), 
             family = "orb",
             color = accent, 
-            size = 10) +
+            size = 2) + #10
   geom_text(aes(x = 0, y = day, label = str_sub(string = wday, start = 1, end = 1)), 
             family = "orb", 
             fontface = "bold",
             color = bg, 
-            size = 8) + 
+            size = 2) + #8
   ylim(-5, 9) +
   xlim(NA, 23.55) +
   coord_polar() +
@@ -306,15 +310,18 @@ plot_day <- ggplot(data = df_day_hour) +
     plot.background = element_rect(fill = bg, color = bg),
     legend.position = "none"
   )
+
+plot_day
 ```
 
 14. **This plot includes one-letter labels for each day of the week. How is this accomplished when week days are written using their three-letter abbreviations (e.g. `Mon`, `Tue`) in the `df_day_hour` data frame?**
 
-    - Answer here
+    - The one-letter weekday labels for each day of the week are created by extracting the first character of each three-letter weekday abbreviation in the data frame. This is done in the second geom_text() layer using `str_sub(string = wday, start = 1, end = 1)`, which converts 'Mon' to 'M', 'Tue' to 'T' and so on.
 
 15. **What role do the `ylim()` and `xlim()` functions play in shaping a ggplot, and how do they change the visual layout of this particular plot? To better understand their effect, try rerunning the code with each of these lines commented out and observe how the plot’s spacing and composition change.**
 
-    - Answer here
+    - The `ylim()` and `xlim()` functions sets the visible ranges of the y axes and x axes. It controls spacing and placement of elements in a ggplot. When I tried rerunning the code with each of these lines commented out, the plot becomes tightly packed. The spacing around the circular layout decreased and the hour merges to form a point.
+    (Check again)
 
 ### iv. Build `quote*`s
 
@@ -340,6 +347,8 @@ quote1 <- ggplot() +
   theme_void() +
   coord_cartesian(clip = "off")
 
+quote1
+
 quote2 <- ggplot() +
   annotate(geom = "text", 
            x = 0, 
@@ -356,6 +365,8 @@ quote2 <- ggplot() +
   theme_void() +
   coord_cartesian(clip = "off")
 
+quote2
+
 quote3 <- ggplot() +
   annotate(geom = "text", 
            x = 0, 
@@ -371,6 +382,8 @@ quote3 <- ggplot() +
   ylim(0, 1) +
   theme_void() +
   coord_cartesian(clip = "off")
+
+quote3
 ```
 
 16. **Why do you think the author chose to convert these text elements (and also in `plot_ufo`, below!) into ggplot objects (you may consider returning to this question after you've worked your way through all of the code)?**
@@ -391,6 +404,8 @@ plot_ufo <- ggplot() +
   theme(
     plot.background = element_rect(fill = bg, color = bg) 
   )
+
+plot_ufo
 ```
 
 ### vi. Build `plot_base` 
@@ -427,11 +442,13 @@ plot_base <- ggplot() +
                                             margin = margin(t = 20)),
     plot.margin = margin(b = 20, t = 50, r = 50, l = 50)
   )
+
+plot_base
 ```
 
 17. **Why does the author render `plot.caption` using `ggtext::element_markdown()`, rather than `element_text()` (like he does for rendering `plot.title` and `text`)?**
 
-    - Answer here
+    - The author uses `ggtext::element_markdown()` for `plot.caption` to add formatting like italics, bold or colors. The element_text() only handles plain text whereas `element_markdown()` lets style the text directly. This allows the caption to have italics and a darker color for emphasis, while the title and other text remain simple using `element_text()`.
 
 ## V. Assemble & save
 
@@ -458,15 +475,18 @@ ggsave(plot = plot_final,
        filename = here::here("outputs", "ufo_sightings_infographic.png"), 
        height = 16, 
        width = 10)
+
+plot_final
 ```
 
 18. **Explain how `plot_final` is assembled. What do you think is the most challenging aspect of arranging all components into a single plot?**
 
-    - Answer here
+    - `plot_final` is assembled using `plot_base` on the base which contains the title, subtitle and background. After that, multiple inset plots and text elements are added using `inset_element()`. Each inset (like `plot_shape`, `plot_us`, `plot_day`, quotes and `plot_ufo`) is positioned within a specific part using the left, right, top and bottom coordinates. Finally, `plot_annotation()` is used to ensure the background and styling are consistent across the entire plot. The most challenging aspect is organizing the layout and components so they don’t overlap, keeping the plot readable and visually appealing. Adjusting the coordinates seems difficult.
+
 
 19. **Can you think of one reason the author may have chosen to separate the construction of `plot_base` and `plot_final`?**
 
-    - Answer here
+    - The author may have separated `plot_base` and `plot_final` to organize the code. It will also simplify the workflow, and reusability of the code. The separation also makes debugging, iteration, adjustment of the layout easier.
 
 ## Answer some final reflective questions 
 
