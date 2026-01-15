@@ -54,11 +54,11 @@ showtext::showtext_auto(enable = TRUE)
 
 1. **What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantage(s) is there to defining these values here, as variables, rather than defining the values directly throughout the script?**
 
-    - In line 15, `alien` is assigned a vector containing two hexadecimal color codes. In line 16, the variable `bg` is assigned the first color in the alien vector, where bg represents the background color. In line 17, `accent` is assigned the second color in the alien vector, which represents highlight color. This ensures consistency throughout the workflow and to helps avoid typos. These variables are likely used in multiple places later in the workflow, such as in plot themes or aesthetic. By defining them, any color changes can be made in a lines 15–17 rather than updating the same values repeatedly throughout the workflow.
+    - In line 15, `alien` is assigned a vector containing two hexadecimal color codes. In line 16, the variable `bg` is assigned the first color in the alien vector, where bg represents the background color. In line 17, `accent` is assigned the second color in the alien vector, which represents highlight color. This ensures consistency throughout the workflow and helps avoid typos. These variables are likely used in multiple places later in the workflow, such as in plot themes or aesthetic. By defining them, any color changes can be made in lines 15, 16 or 17, rather than updating the same values repeatedly throughout the workflow.
 
 2. **In your own words, explain what the function, `font_add_google()`, does. What's the difference between the two arguments, `name` and `family`?**
 
-    - The function `font_add_google()` downloads font from google fonts and makes it available in R for use. This allows the use of custom fonts that are not installed locally on the computer. The `name` argument represents the official name of the font as it appears on google fonts, which tells R which font to download. The `family` argument assigns is an alias of the google font name and is used to reference the google font within R. This makes the code easier to write and read, as it avoids repeatedly using the full font name.
+    - The function `font_add_google()` downloads font from google fonts and makes it available in R for use. This allows the use of custom fonts that are not installed locally on the computer. The `name` argument represents the official name of the font as it appears on google fonts, which tells R which font to download. The `family` argument assigns an alias of the google font name and uses it to reference the google font within R. This helps in reading and writing code easily, and avoids using the full font name repeatedly.
 
 ## II. Data wrangling
 
@@ -80,7 +80,7 @@ df_pop <- places |>
 
 3. **Describe what this data frame contains.**
 
-    - This data frame `df_pop` contains the name of the 51 states of the Unites States along with their corresponding population.
+    - This data frame `df_pop` contains the name of the 51 states of the Unites States along with their respective population.
 
 ### ii. Create `df_us`
 
@@ -108,7 +108,7 @@ df_us <- ufo_sightings |>
 
 5. **What does `opacity_val` represent, and why is it calculated?**
 
-    - The `opacity_val` represents the degree of transparency of an element, color or pixel. It helps measure how much content behind the object can be seen. `opacity_val is used to see how color appears when a transparent object is placed on top of a background.
+    - The `opacity_val` represents the degree of transparency of an element, color or pixel. It helps measure how much content behind the object can be seen. `opacity_val` is used to see how color appears when a transparent object is placed on top of a background.
 
 ### iii. Create `df_shape`
 
@@ -132,7 +132,7 @@ df_shape <- ufo_sightings |>
 
 6. **Describe what this data frame contains.**
 
-    - It includes the shape name, the total number of sightings for each shape (total_sightings), and an opacity value (opacity_val) that ranges from 0.3 to 1. The shapes are arranged in descending order by frequency and converted to an ordered factor for plotting purposes, ensuring they'll display in order from most to least common. The opacity value  ranges from 0.3 to 1, where the most common shape has an opacity of 1, which is fully opaque and the least common has an opacity of 0.3.
+    - It includes the shape name (`shape`), the total number of sightings for each shape (total_sightings), and an opacity value (opacity_val) that ranges from 0.3 to 1. The shapes are arranged in descending order by frequency and converted to an ordered factor for plotting purposes, ensuring they'll display in order from most to least common. The opacity value  ranges from 0.3 to 1. Here, the most common shape has an opacity of 1, which is fully opaque, and the least common has an opacity of 0.3.
 
 7. **What does `fct_reorder` do when it is applied to the `shape` variable? What would have happened if this step was not performed?**
 
@@ -211,14 +211,14 @@ plot_shape <- ggplot(data = df_shape) +
             family = "orb", 
             fontface = "bold",
             color = bg, 
-            size = 4, #14
+            size = 14,
             hjust = 0,
             nudge_y = 0.2) +
   geom_text(aes(x = total_sightings-200, y = shape, label = scales::comma(total_sightings)),
             family = "orb",
             fontface = "bold",
             color = bg,
-            size = 2, #10
+            size = 10,
             hjust = 1,
             nudge_y = -0.2) +
   scale_x_continuous(expand = c(0, NA)) +
@@ -226,7 +226,7 @@ plot_shape <- ggplot(data = df_shape) +
   theme_void() +
   theme(
     plot.subtitle = element_text(family = "bar", 
-                                 size = 20, #40
+                                 size = 40,
                                  color = accent,
                                  hjust = 0,  
                                  margin = margin(b = 10)),
@@ -254,12 +254,12 @@ plot_us <-  ggplot(df_us) +
   geom_text(aes(x = 0.5, y = 0.7, label = state), 
             family = "orb", 
             fontface = "bold",
-            size = 3, #9
+            size = 9,
             color = bg) +
   geom_text(aes(x = 0.5, y = 0.3, label = round(num_obs_per10k, 1)), 
             family = "orb", 
             fontface = "bold",
-            size = 4, #8
+            size = 8,
             color = bg) +  
   geofacet::facet_geo(~state) +
   coord_fixed(ratio = 1) +
@@ -268,10 +268,10 @@ plot_us <-  ggplot(df_us) +
   theme(
     strip.text = element_blank(),
     plot.subtitle = element_text(family = "bar", 
-                                 size = 15, #40
+                                 size = 40,
                                  color = accent,
-                                 hjust = 0, #1
-                                 margin = margin(b = 8)), # b = 10
+                                 hjust = 1,
+                                 margin = margin(b = 10)),
     legend.position = "none" 
   )
 
@@ -296,12 +296,12 @@ plot_day <- ggplot(data = df_day_hour) +
   geom_text(aes(x = hour, y = 9, label = hour_lab), 
             family = "orb",
             color = accent, 
-            size = 2) + #10
+            size = 10) +
   geom_text(aes(x = 0, y = day, label = str_sub(string = wday, start = 1, end = 1)), 
             family = "orb", 
             fontface = "bold",
             color = bg, 
-            size = 2) + #8
+            size = 8) +
   ylim(-5, 9) +
   xlim(NA, 23.55) +
   coord_polar() +
@@ -316,12 +316,11 @@ plot_day
 
 14. **This plot includes one-letter labels for each day of the week. How is this accomplished when week days are written using their three-letter abbreviations (e.g. `Mon`, `Tue`) in the `df_day_hour` data frame?**
 
-    - The one-letter weekday labels for each day of the week are created by extracting the first character of each three-letter weekday abbreviation in the data frame. This is done in the second geom_text() layer using `str_sub(string = wday, start = 1, end = 1)`, which converts 'Mon' to 'M', 'Tue' to 'T' and so on.
+    - The one-letter weekday labels for each day of the week are created by extracting the first character of each three-letter weekday abbreviation in the data frame. This is done in the second `geom_text()` layer using `str_sub(string = wday, start = 1, end = 1)`, which converts 'Mon' to 'M', 'Tue' to 'T' and so on.
 
 15. **What role do the `ylim()` and `xlim()` functions play in shaping a ggplot, and how do they change the visual layout of this particular plot? To better understand their effect, try rerunning the code with each of these lines commented out and observe how the plot’s spacing and composition change.**
 
-    - The `ylim()` and `xlim()` functions sets the visible ranges of the y axes and x axes. It controls spacing and placement of elements in a ggplot. When I tried rerunning the code with each of these lines commented out, the plot becomes tightly packed. The spacing around the circular layout decreased and the hour merges to form a point.
-    (Check again)
+    - The `ylim()` and `xlim()` functions sets the visible ranges of the y axes and x axes. It controls spacing and placement of elements in a `ggplot`. When I tried rerunning the code with each of these lines commented out, the plot becomes tightly packed. Changing the `ylim()` changed the hour labels in circle. Greater the `ylim()`, further away the labels from the circle. `xlim()` adjusts the hour, how much space the circle has.
 
 ### iv. Build `quote*`s
 
@@ -388,7 +387,7 @@ quote3
 
 16. **Why do you think the author chose to convert these text elements (and also in `plot_ufo`, below!) into ggplot objects (you may consider returning to this question after you've worked your way through all of the code)?**
 
-    - Answer here
+    - The author is trying to make each part a separate `ggplot object`. It ensure it works correctly. This way, the final visualization is less likely to have errors. Once all parts are working, they can be combined into one final plot, making the code cleaner and easier to follow. Having separate objects also makes it simple to control where each graph appears in the final visualization.
 
 ### v. Build `plot_ufo`
 
@@ -448,7 +447,7 @@ plot_base
 
 17. **Why does the author render `plot.caption` using `ggtext::element_markdown()`, rather than `element_text()` (like he does for rendering `plot.title` and `text`)?**
 
-    - The author uses `ggtext::element_markdown()` for `plot.caption` to add formatting like italics, bold or colors. The element_text() only handles plain text whereas `element_markdown()` lets style the text directly. This allows the caption to have italics and a darker color for emphasis, while the title and other text remain simple using `element_text()`.
+    - The author uses `ggtext::element_markdown()` for `plot.caption` to add formatting like italics, bold or colors. The `element_text()` only handles plain text whereas `element_markdown()` lets style the text directly. This allows the caption to have italics and a darker color for emphasis, while the title and other text remain simple using `element_text()`.
 
 ## V. Assemble & save
 
@@ -486,7 +485,7 @@ plot_final
 
 19. **Can you think of one reason the author may have chosen to separate the construction of `plot_base` and `plot_final`?**
 
-    - The author may have separated `plot_base` and `plot_final` to organize the code. It will also simplify the workflow, and reusability of the code. The separation also makes debugging, iteration, adjustment of the layout easier.
+    - The author may have separated `plot_base` and `plot_final` to organize the code. It will also simplify the workflow, and reusability of the code. The separation also makes debugging, iteration and adjustment of the layout easier.
 
 ## Answer some final reflective questions 
 
@@ -494,11 +493,11 @@ plot_final
 
     a. **What "perceptual tasks" (from Cleveland & McGill's heirarchy) must the viewer perform to extract information from these visualizations?**
         
-        - In these visualizations, the viewers mainly judge position along with the scale to compare the number of UFO sightings across shapes, times and locations. The viewer use area and color intensity to identify the total sightings to see differences in sighting frequency, such as variations by time of the day and state. The viewer also judge position around a circle to understand time-based patterns in UFO sightings.
+        - In these visualizations, the viewers mainly judge position along with the scale to compare the number of UFO sightings across shapes, times and locations. The viewer use area and color intensity to identify the total sightings to see differences in sighting frequency, such as variations by time of the day and state. The viewer also judge position around a circle to understand time based patterns in UFO sightings.
     
     b. **What task(s) do you think the author wanted to enable or message(s) he wanted to convey with these visualizations (see lecture 2.1, slide 16 for examples)? Be sure to note at least one task / message for each of the three data viz.**
     
-        - The author wanted to show which shapes are most commonly reported, with more emphasis on the top shapes and less emphasis on rarer ones using opacity for the bar plot of UFO shapes. For the state level sightings, the author try to show viewer where UFO sightings are most common by using the spatial layout of US states along with opacity to show differences in frequency. Finally, the plot showing sightings by hour and day highlights the pattern that UFO sightings are most common around 1AM on Sundays by combining time of day and weekday in a single visualization.
+        - The author wanted to show which shapes are most commonly reported, with more emphasis on the most common shapes and less emphasis on least common shapes using opacity for the bar plot of UFO shapes. For the state level sightings, the author try to show viewer where UFO sightings are most common by using the spatial layout of US states along with opacity to show differences in frequency. Finally, the plot showing sightings by hour and day highlights the pattern that UFO sightings are most common around 1AM on Sundays by combining time of day and weekday in a single visualization.
     
     c. **Name at least one caveat to the "hierarchy of perceptual tasks" that the author employed to achieve a goal(s) you noted in question b?**
     
@@ -510,7 +509,7 @@ plot_final
 
 22. **Describe two elements of this piece that you feel could be better presented in a different way. Why?** 
 
-    - One element that could be presented better is the sightings per 10k population chart. Based on the title, it takes some time to understand what it represents. Eeven though it resembles map of the U.S., it could be shown in a more intuitive way. Another issue is the color choice. While the black and green combination looks good, the UFO shapes between the most common and least common categories are hard to distinguish.
+    - One element that could be presented better is the sightings per 10k population chart. Based on the title, it takes some time to understand what it represents. Even though it resembles map of the U.S., it could be shown in a more intuitive way. Another issue is the color choice. While the black and green combination looks good, the UFO shapes between the most common and least common categories are hard to distinguish.
     
 23. **Describe two new things that you learned by interpreting / annotating this code. These could be packages, functions, or even code organizational approaches that you hadn't previously known about or considered.**
 
@@ -518,4 +517,4 @@ plot_final
 
 24. **How, if at all, did you use AI tools to help you interpret this code? Describe your approach to using these tools for this assignment. In what ways was consulting the documentation more (or less) helpful than using AI?**
 
-    - I used AI to help structure my sentences. To understand the functions of different elements in the code, I referred to the documentation on rdocumentation.org and cran.r-project.org. Here, most of the information was in one place, which saved my time. I also referred to Stack Overflow, where users explained how and why things work, which was very helpful.
+    - I used AI to help structure my sentences. To understand the functions of different elements in the code, I referred to the documentation on rdocumentation.org and cran.r-project.org. Here, most of the information was in one place, which saved my time. I also referred to stack overflow, where users explained how and why things work, which was very helpful.

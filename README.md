@@ -1,4 +1,4 @@
-# Homework #1 (Interpreting `{ggplot2}` code)
+# EDS 240 - Assignment #1 (Interpreting `{ggplot2}` code)
 
 This repository contains the details of the Assignment 1 for the course EDS 240 - Data Visualization & Communication for the Master of Environmental Data Science (MEDS) program.
 
