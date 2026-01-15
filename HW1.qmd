@@ -494,28 +494,28 @@ plot_final
 
     a. **What "perceptual tasks" (from Cleveland & McGill's heirarchy) must the viewer perform to extract information from these visualizations?**
         
-        - Answer here
+        - In these visualizations, the viewers mainly judge position along with the scale to compare the number of UFO sightings across shapes, times and locations. The viewer use area and color intensity to identify the total sightings to see differences in sighting frequency, such as variations by time of the day and state. The viewer also judge position around a circle to understand time-based patterns in UFO sightings.
     
     b. **What task(s) do you think the author wanted to enable or message(s) he wanted to convey with these visualizations (see lecture 2.1, slide 16 for examples)? Be sure to note at least one task / message for each of the three data viz.**
     
-        - Answer here
+        - The author wanted to show which shapes are most commonly reported, with more emphasis on the top shapes and less emphasis on rarer ones using opacity for the bar plot of UFO shapes. For the state level sightings, the author try to show viewer where UFO sightings are most common by using the spatial layout of US states along with opacity to show differences in frequency. Finally, the plot showing sightings by hour and day highlights the pattern that UFO sightings are most common around 1AM on Sundays by combining time of day and weekday in a single visualization.
     
     c. **Name at least one caveat to the "hierarchy of perceptual tasks" that the author employed to achieve a goal(s) you noted in question b?**
     
-        - Answer here
+        - To achieve the goals, we can see author using donut chart to show how UFO sightings change over time. This requires viewer to judge angles, direction and color shading. However, the viewer can quickly spot the brightest green areas, which represent the most sightings, and follow the donut shape to identify the corresponding day and time. The chart also makes it easy to see how sightings decrease around the peak time.
 
 21. **Describe two elements of this piece that you find visually-pleasing / easy to understand / intuitive. Why?** 
 
-    - Answer here
+    - The first element I find visually pleasing is the UFO sighting donut chart based on weekdays and time. It looks like a wall clock, which makes it fun and engaging. The second element is the bar chart of the most commonly reported shapes. It is easy to understand, and the key information can be spotted quickly.
 
 22. **Describe two elements of this piece that you feel could be better presented in a different way. Why?** 
 
-    - Answer here
+    - One element that could be presented better is the sightings per 10k population chart. Based on the title, it takes some time to understand what it represents. Eeven though it resembles map of the U.S., it could be shown in a more intuitive way. Another issue is the color choice. While the black and green combination looks good, the UFO shapes between the most common and least common categories are hard to distinguish.
     
 23. **Describe two new things that you learned by interpreting / annotating this code. These could be packages, functions, or even code organizational approaches that you hadn't previously known about or considered.**
 
-    - Answer here
+    - I learned about the functions of the libraries `geofacet`, `grid`, and `showtext`. I also learned how to properly overlay maps and combine many plots and charts at the same time. The functions `glue()` and `inset_element()` were completely new to me.
 
 24. **How, if at all, did you use AI tools to help you interpret this code? Describe your approach to using these tools for this assignment. In what ways was consulting the documentation more (or less) helpful than using AI?**
 
-    - Answer here
+    - I used AI to help structure my sentences. To understand the functions of different elements in the code, I referred to the documentation on rdocumentation.org and cran.r-project.org. Here, most of the information was in one place, which saved my time. I also referred to Stack Overflow, where users explained how and why things work, which was very helpful.
