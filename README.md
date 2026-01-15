@@ -3,7 +3,7 @@
 This repository contains the details of the Assignment 1 for the course EDS 240 - Data Visualization & Communication for the Master of Environmental Data Science (MEDS) program.
 
 ## Background
-As a data scientist, we will often work with code written by other people. This might include learning from existing code, modifying it for your own projects, reviewing a teammate’s work, or checking the results produced by generative AI tools.
+As a data scientist, we will often work with code written by other people. This might include learning from existing code, modifying it for our projects, reviewing a teammate’s work, or checking the results produced by generative AI tools.
 
 Being able to read, understand and explain code we didn't write is an essential skill. This repository focuses on practicing that skill. We will interpret **data wrangling** and **{ggplot2}** code written by someone else. To do this, we need to run the code (all at once or line by line), read documentation, search online and use AI tools to support our understanding.
 
